@@ -1,0 +1,34 @@
+name: continue on error and timeout minutes
+
+on: [push]
+
+jobs:
+  run-shell-command:
+    runs-on: ubuntu-latest
+    steps:
+      - name: echo a string
+        if: failure() # run this step even the previous step fails
+        run: echo "Hello World"
+
+      - name: multiline script
+        continue-on-error: true #even this one fails, others will be triggered/continued
+        run: |
+          node -v
+          npm -v
+
+      - name: python shell commands
+        # timeout-minutes: 360 #if it takes longer than 360, this step will be timed-out
+        run: |
+          import platform
+          print(platform.processor())
+        shell: python
+
+  run-windows-command:
+    runs-on: windows-latest
+    needs: ["run-shell-command"] # runs only after successfully complete triggering run-shell-command
+    # this is an array, you can add multiple jobs as well
+    steps:
+      - name: Directory powershell
+        run: Get-Location
+      - name: Directory Bash
+        run: pwd
