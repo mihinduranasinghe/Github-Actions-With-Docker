@@ -17,8 +17,10 @@ jobs:
   apimcli-steps:
     runs-on: ubuntu-latest
     steps:
-      - name: apim cli setup
+      - name: Staging to VM from repo
         uses: actions/checkout@v2.3.4
+
+      - name: apim cli setup
         run: |
           chmod +x /usr/local/bin/apimcli
           cd $GITHUB_WORKSPACE/apimcli/
