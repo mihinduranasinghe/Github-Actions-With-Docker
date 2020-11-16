@@ -14,6 +14,7 @@ jobs:
           node -v
           cat /etc/os-release
 
+  # Need to publish below parts in a docker container to github market. So it can be used as above part
   apimcli-steps:
     runs-on: ubuntu-latest
     steps:
@@ -22,7 +23,15 @@ jobs:
 
       - name: apim cli setup
         run: |
-          # chmod +x /usr/local/bin/apimcli
+          # chmod +x /usr/local/bin/apimcli # this is for when publshing a built actions to market (Nest need to do it)
           cd $GITHUB_WORKSPACE/apimcli/
           ls -A
           ./apimcli
+          ./apimcli --help
+
+      - name: api ctl setup
+        run: |
+          cd $GITHUB_WORKSPACE/apictl/
+          ls -A
+          ./apictl
+          ./apictl --help
