@@ -23,6 +23,6 @@ jobs:
       - name: apim cli setup
         run: |
           ls -A
-          chmod +x /usr/local/bin/apimcli
+          # chmod +x /usr/local/bin/apimcli
           cd $GITHUB_WORKSPACE/apimcli/
           ./apimctl
