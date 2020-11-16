@@ -25,4 +25,5 @@ jobs:
           ls -A
           # chmod +x /usr/local/bin/apimcli
           cd $GITHUB_WORKSPACE/apimcli/
-          ./apimctl
+          ls -A
+          # ./apimctl
